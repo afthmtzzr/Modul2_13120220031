@@ -1,12 +1,10 @@
 package com.example.modul2_13120220031;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,7 +12,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
@@ -33,15 +30,15 @@ public class MainActivity extends AppCompatActivity {
     private DataFileGambar dataFileGambar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         imageView = findViewById(R.id.imageView);
     }
 
-    @SuppressWarnings("deprecation")
+
     private void bukaGallery(){
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         Intent intent = new Intent(Intent.ACTION_PICK, uri);
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQ_CODE_PERM_STORAGE)
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -83,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
         return dataFileGambar;
     }
 
-
-    @SuppressWarnings("deprecation")
     public void bukaKameraClick(View view) {
         int permissionCamera = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA);
         if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
@@ -112,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQ_CODE_BUKA_GALLERY && data != null) {
